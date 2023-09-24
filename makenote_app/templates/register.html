@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <form method = 'POST'>
+    {%csrf_token%}
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'makenote_app/css/eld.css' %}">
+</head>
+<style>
+    
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the form vertically */
+        text-align: left; /* Align form elements to the left */
+    }
+
+    /* Style for the input containers */
+    .contact-form .input-container {
+        width: 50%;
+        margin-bottom: 20px;
+    }
+
+    
+
+    /* Style for input fields */
+    .contact-form .input-container .input {
+        /* ... Your existing input styles ... */
+        width: 100%; /* Make the input fields take up the full width */
+    }
+
+    /* Additional CSS for two-column layout */
+    .contact-form .input-container.two-column {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* Space inputs evenly */
+        align-items: center; /* Align vertically centered */
+    }
+
+    
+</style>
+<body>
+    <div class="contact-form">
+        <h3 class="title">REGISTER HERE</h3>
+        <div class="input-container two-column">
+            <label for="username">username</label>
+            <input type="text" name="username" class="input" id="username" />
+        </div>
+        <div class="input-container two-column">
+            <label for="password">password</label>
+            <input type="password" name="password" class="input" id="password" />
+        </div>
+        <input type="submit" value="Register" class="btn" />
+        <a href ='/login/'> login</a>
+    </div>
+
+</body>
+</html>
