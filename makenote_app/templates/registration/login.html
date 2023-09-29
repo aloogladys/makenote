@@ -1,3 +1,7 @@
+
+{% load crispy_forms_tags %}
+{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +9,7 @@
     {%csrf_token%}
     {% load static %}
     <meta charset="UTF-8">
-    <title>MAIN</title>
+    <title>log in page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'makenote_app/css/eld.css' %}">
 </head>
@@ -39,8 +43,8 @@
 
     .contact-form .input {
         width: 100%;
-        background: #f1f1f1;
-        margin: 8px 0;
+        background: white;
+        margin: 10px 0;
         padding: 12px 20px;
         box-sizing: border-box;
         outline: none;
@@ -86,10 +90,11 @@
     }
 
     .contact-form .input-container .input:valid ~ label {
-        top: -20px;
+        top: -24px;
         left: 0;
         color: #bac675;
-        font-size: 16px;
+        font-size: 18px;
+        bottom: 10px;
     }
 
     .contact-form .input-container .input:valid ~ span::before {
@@ -102,7 +107,7 @@
         bottom: -2px;
         background: #ccc;
         width: 100%;
-        height: 2px;
+        height: 1px;
     }
 
     .contact-form .input-container .bar::before {
@@ -110,7 +115,7 @@
         position: absolute;
         background: #bac675;
         width: 0%;
-        height: 2px;
+        height: 1px;
         transition: 0.3s;
     }
 
@@ -127,6 +132,20 @@
         left: 0;
         color: #bac675;
         font-size: 16px;
+    }
+
+    .contact-form a {
+        color: #333;
+        font-size: 18px;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+        transition: 0.4s;
+    }
+
+    .contact-form a:hover {
+        color: #0e1102;
     }
 
     .form {
@@ -223,8 +242,11 @@
       </div>
       
       <input type="submit" value="Log in" class="btn" />
-      <a href ='/register/'> Register</a>
+      <!-- <input type="submit" value="Dont have an account ? Register here" class="btn" /> -->
+      <a href ='/register/'> Dont have an account ? Register here</a>
     </form>
   </div>
 
 </body>
+</html>
+{% endblock %}

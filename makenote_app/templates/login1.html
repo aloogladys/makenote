@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -6,7 +7,7 @@
     {%csrf_token%}
     {% load static %}
     <meta charset="UTF-8">
-    <title>register page</title>
+    <title>log in page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'makenote_app/css/eld.css' %}">
 </head>
@@ -33,6 +34,10 @@
         box-shadow: 0 0 20px 9px #00000057;
     }
 
+    .contact-form h3 {
+        color: #333;
+        font-weight: 500;
+    }
 
     .contact-form .input {
         width: 100%;
@@ -137,7 +142,6 @@
         transition: 0.4s;
     }
 
-
     .contact-form a:hover {
         color: #0e1102;
     }
@@ -225,7 +229,7 @@
     <span class="circle two"></span>
 
     <form action="login.html" autocomplete="off">
-      <h3 class="title">REGISTER HERE</h3>
+      <h3 class="title">LOG IN</h3>
       <div class="input-container">
         <input type="text" name="username" class="input" />
         <label for="">username</label>
@@ -235,9 +239,9 @@
         <label for="">password</label>
       </div>
       
-      <input type="submit" value="Register " class="btn" />
+      <input type="submit" value="Log in" class="btn" />
       <!-- <input type="submit" value="Dont have an account ? Register here" class="btn" /> -->
-      <a href ='/login/'>Already have an account, LOGIN</a>
+      <a href ='/register/'> Dont have an account ? Register here</a>
     </form>
   </div>
 
