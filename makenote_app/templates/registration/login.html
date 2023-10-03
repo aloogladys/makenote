@@ -1,13 +1,11 @@
 
-{% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <form method = 'POST'>
-    {%csrf_token%}
-    {% load static %}
+    
     <meta charset="UTF-8">
     <title>log in page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -230,7 +228,9 @@
     <span class="circle one"></span>
     <span class="circle two"></span>
 
-    <form action="login.html" autocomplete="off">
+    <form method = 'POST'>
+        {%csrf_token%}
+      
       <h3 class="title">LOG IN</h3>
       <div class="input-container">
         <input type="text" name="username" class="input" />
