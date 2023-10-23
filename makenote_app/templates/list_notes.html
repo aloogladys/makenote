@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List notes</title>
+</head>
+<body>
+    <h1>All Notes</h1>
+
+    <ul>
+        {% for note in note_queryset %}
+        <li>
+            {{note.id}} - {{note.title}}
+            <a href="/update_note/{{note.id}}/">Update</a>
+            <a href="/delete_note/{{note.id}}/">Delete</a>
+        </li>
+        {% endfor %}
+        
+    </ul>    
+
+</body>
+</html>

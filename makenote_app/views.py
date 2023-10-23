@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
-from .models import Person   
+from django.contrib import messages
 from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
+from .models import Note
 
 # def login(request):
 #     if request.method == "POST":
@@ -28,7 +29,8 @@ def register(request):
         user = User.objects.create(username=request.POST['username'])
         user.set_password(request.POST['password'])
         user.save()
-        return render(request,'success.html')
+        messages.success(request, 'You have succesfully registered')
+        # return render(request,'success.html')
 
     return render(request,'register.html')
 
@@ -53,27 +55,75 @@ def login(request):
         return render(request, 'login1.html')
 
 
-# def login(request):
-#     username = request.POST["username"]
-#     password = request.POST["password"]
-#     # user = authenticate(request, username=username, password=password)
-#     try:
-#         user = authenticate(request, username=username, password=password)
-#         login(request, user)
-#         return render(request,'create.html')
-        
-#     except:
-#         return render(request,'error.html')
+
     
 
 
 
-     
 def home(request):
     return render(request,'home.html')
 
 def create(request):
+    if request.method == "POST":
+        title = request.POST['title']
+        description = request.POST['description']
+        Note.objects.create(title = title, description = description)
+        return redirect('list_notes')
+
     return render(request,'create.html')
+
+
+def list_notes(request):
+    # pull all notes from the database 
+
+    note_queryset = Note.objects.all()
+    context = {"note_queryset":note_queryset}
+
+    return render(request, 'list_notes.html', context )
+
+
+def delete_note(request, id):
+    try:
+        note = Note.objects.get(id = id)
+        note.delete()
+    except:
+        pass
+    return redirect('list_notes')
+
+
+def update_note(request, id):
+    note = Note.objects.get(id = id)
+
+    if request.method == "POST":
+        title = request.POST['title']
+        description = request.POST['description']
+
+        # update the note
+        note.title = title
+        note.description = description
+        note.save()
+        return redirect('list_notes')
+        
+
+    context = {'note':note}
+    return render(request, 'update_note.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def success(request):
     return render(request,'success.html')
