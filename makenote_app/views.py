@@ -46,7 +46,7 @@ def login(request):
     
         if user is not None:
             login_user(request, user)
-            return render(request,'create.html')
+            return redirect('list_notes')
         
         else:
             return render(request,'error.html')
@@ -64,19 +64,30 @@ def home(request):
     return render(request,'home.html')
 
 def create(request):
+    if request.user.is_authenticated == True:
+        pass
+    else:
+        return redirect('login')
+    
     if request.method == "POST":
         title = request.POST['title']
         description = request.POST['description']
-        Note.objects.create(title = title, description = description)
+        user = request.user
+        Note.objects.create(title = title, description = description, user = user )
         return redirect('list_notes')
 
     return render(request,'create.html')
 
 
 def list_notes(request):
+    if request.user.is_authenticated == True:
+        pass 
+    else:
+        return redirect('login')
+    
     # pull all notes from the database 
 
-    note_queryset = Note.objects.all()
+    note_queryset = Note.objects.filter(user = request.user )
     context = {"note_queryset":note_queryset}
 
     return render(request, 'list_notes.html', context )
@@ -107,6 +118,10 @@ def update_note(request, id):
 
     context = {'note':note}
     return render(request, 'update_note.html', context)
+
+def person (request):
+    return render (request, 'person.html')
+    
 
 
 
