@@ -101,6 +101,11 @@ def delete_note(request, id):
         pass
     return redirect('list_notes')
 
+def test(request):
+    return render(request, 'test.html')
+
+
+
 
 def update_note(request, id):
     note = Note.objects.get(id = id)
